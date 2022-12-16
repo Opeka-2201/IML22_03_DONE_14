@@ -1,0 +1,50 @@
+\section{General method for Regression Algorithms}       
+For all the methods of regression algorithms, we have the same basic method in 5 steps : 
+\begin{enumerate}
+    \item Process the data  (explained below)
+    \item Create a model by zone
+    \item Tune hyper-parameters  (explained below)
+    \item Fit the data
+    \item Predict missing values
+\end{enumerate}
+\subsection*{Data processing}
+For each zone, the data is gathered from the \verb|.csv| files which have previsously been handled for outliers. This data is then splited between the training and testing set by locating the -1 values in the \verb|TARGETVAR| columns from the \verb|Y_i.csv|.
+
+\subsection*{Hyperparameters tuning}
+Hyperparameter tuning is the process of choosing the optimal values for the hyperparameters of a machine learning model. Hyperparameters are parameters that are not learned from the data but are set by the practitioner. They control the behavior of the learning algorithm and have a significant impact on the performance of the model. 
+\\\\
+There are several methods for tuning hyperparameters, including manual tuning, grid search, and random search. 
+\\\\
+Manual tuning involves manually trying out different values for the hyperparameters and evaluating the performance of the model for each combination.
+\\\\
+Grid search is a more automated approach that involves specifying a grid of hyperparameter values to search over. The model is trained and evaluated for each combination of hyperparameters, and the combination that gives the best performance is selected.
+\\\\
+Random search is another automated approach that involves sampling random combinations of hyperparameters and evaluating the model for each combination. 
+\\\\
+Hyperparameter tuning is an important step in the machine learning process, as it can significantly improve the performance of the model. It is generally recommended to tune the hyperparameters of a model after it has been trained on the data, as the optimal values of the hyperparameters may depend on the specific characteristics of the training data.
+\\\\
+In this project we used grid search for every regression with the function \verb|GridSearchCV| using 5-fold cross-validation on our training set. However grid search can be computationally expensive, as it requires training and evaluating the model for every combination in the grid. This can become infeasible for large grids or complex models. This explain why one use manual tuning for the random forest regression to reduce the computation time.
+\\\\
+The values gathered by the grid search are reported in this table (using \verb|hyperparams.py| file to compute paramaters for each zone) :
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+Zone & Ridge (alpha) & Decision Tree (m\_depth , m\_s\_split, min\_s\_l) & $k$NN (n\_nbrs, weight, algo) \\ \hline
+1    & 10 & 10 10 2 & 32 distance auto \\ \hline
+2    & 10 & 10 2 2 & 32 distance brute \\ \hline
+3    & 10 & 10 2 2 & 32 uniform auto \\ \hline
+4    & 10 & 10 10 2 & 32 distance brute \\ \hline
+5    & 10 & 10 2 2 & 16 uniform auto \\ \hline
+6    & 10 & 10 2 1 & 32 uniform auto\\ \hline
+7    & 10 & 10 5 2 & 16 uniform auto \\ \hline
+8    & 10 & 10 10 2 & 32 distance auto \\ \hline
+9    & 10 & 10 5 2 & 16 uniform auto \\ \hline
+10   & 10 & 10 10 2 & 32 uniform auto \\ \hline
+\end{tabular}
+\caption{Best hyperparameters relative to each zone}
+\label{tab:hyper-zones}
+\end{table}
+
+For the random forest regression algorithms, we fixed the values of the different hyperparamters (\verb|n_estimators|, \verb|max_depth|, \verb|min_samples_split|, \verb|min_samples_leaf|) respectively at 1000, 1000, 10 and 4.

@@ -1,0 +1,46 @@
+\section{Regression methods}
+For this project, one used multiple regression method to predict the data. Here are a list of all method used and a brief explanation (fitting and prediction for all our methods in \verb|submission.py| file) : 
+\begin{itemize}
+\item \textbf{Linear regression:} Linear regression is a simple and widely-used method for modeling the relationship between a dependent variable and one or more independent variables. It assumes that the relationship between the variables is linear, and estimates the coefficients of the model using a least squares approach.
+
+\item \textbf{Random forest regression:} Random forest is an ensemble method that combines the predictions of multiple decision trees. It creates a set of decision trees using bootstrapped samples of the training data, and each tree makes a prediction for the target variable. The final prediction is the average of the predictions made by the individual trees.
+
+\item \textbf{Decision tree regressor:} Decision tree is a type of model that makes predictions based on a set of rules learned from the training data. It creates a tree-like structure in which each internal node represents a decision based on one of the input features, and each leaf node represents a predicted value for the target variable.
+
+\item \textbf{Ridge:} Ridge is a linear regression model that adds a regularization term to the objective function. This term penalizes large coefficients and helps to prevent overfitting. Ridge regression is often used when there are a large number of features and the risk of overfitting is high.
+
+\item \textbf{K-nearest neighbors regression:} K-nearest neighbors (KNN) is a non-parametric method that makes predictions based on the average of the target values of the K-nearest neighbors in the training dataset. It is sensitive to the scale of the features and may require preprocessing to achieve good performance.
+\end{itemize}
+
+For each method, we computed the \verb|MSE| and \verb|MAE| for all zones by comparing the values computed by regression against the values available in the file \verb|ytrueall| on the assistant's website since the day after the end of the challenge. The method's scores are reported in the table below (using \verb|score.py| file) :
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|cll|}
+\hline
+\multicolumn{3}{|c|}{Score}                                                             \\ \hline
+\multicolumn{1}{|c|}{Decision Tree}     & \multicolumn{1}{l|}{MSE} &  0.075401 \\ \cline{2-3} 
+\multicolumn{1}{|c|}{}                                   & \multicolumn{1}{l|}{MAE}  &  0.197220\\ \hline
+\multicolumn{1}{|c|}{k-NN}              & \multicolumn{1}{l|}{MSE} &  0.071602\\ \cline{2-3} 
+\multicolumn{1}{|c|}{}                                   & \multicolumn{1}{l|}{MAE}  &  0.201271\\ \hline
+\multicolumn{1}{|c|}{Linear Regression} & \multicolumn{1}{l|}{MSE} &  0.098086\\ \cline{2-3} 
+\multicolumn{1}{|c|}{}                                   & \multicolumn{1}{l|}{MAE}  & 0.263663 \\ \hline
+\multicolumn{1}{|c|}{Random Forest}    & \multicolumn{1}{l|}{MSE} & 0.066831 \\ \cline{2-3} 
+\multicolumn{1}{|c|}{}                                   & \multicolumn{1}{l|}{MAE}  &  0.186580\\ \hline
+\multicolumn{1}{|c|}{Ridge}            & \multicolumn{1}{l|}{MSE} &  0.098082\\ \cline{2-3} 
+\multicolumn{1}{|c|}{}                                   & \multicolumn{1}{l|}{MAE}  &  0.263664\\ \hline
+\end{tabular}
+\caption{Results for regression algorithms}
+\end{table}
+
+In our case, looking at mean of the MSE and MAE metrics on each zone, one can say that Random Forest is the best regression algorithm for our data. 
+\paragraph{}
+One of the reasons for the strong performance of random forests is that they are based on the idea of building an ensemble of decision trees, where each tree makes a prediction and the final prediction is the average or majority vote of all the trees. This approach helps to reduce overfitting and improve the generalization of the model to unseen data.
+\paragraph{}
+By looking at the values of our errors for the decision trees, this makes the interpretation above more logical as the Decision Tree is the second best algorithm used to implement regression in our project. This can be explained by a kind of feature selection principle. Indeed, during the training part of the regression, the decision tree automatically selects the most important features for making predictions.
+\paragraph{}
+In our case, the $k$-nearest-neighbors regression, also gives us some good results. Indeed, as previously seen in the first project, this algorithm, when the hyperparameters are wisely chosen produces some of the best results possible.
+\paragraph{}
+Lastly, as expected, the two linear regression algorithms produced the worst results. Indeed, linear regression and ridge regression comes are the same kind. In our case, they produced the same results which means that even with the regularization term, it doesn't overfit our data. We simply can keep the linear regression in our case.
+\paragraph{}
+Overall, it can be said that the results obtained using random forests tend to be highly reliable and consistently outperform those of other machine learning algorithms in our case.

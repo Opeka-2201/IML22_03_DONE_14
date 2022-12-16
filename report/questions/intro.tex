@@ -1,0 +1,9 @@
+\section{Introduction}
+
+For this project, we received the data collected on 10 wind farms in Australia with missing power values respecting some given weeks in every wind farm. The task we were asked was to compute an approximation of the real power of the farm given the wind speed projected on the two main axis at heights of 10 and 100 meters. 
+\paragraph{}
+In this brief report, we'll explore the different techniques used to find the best way to approximate the real wind data from our files by using regression algorithm from the \verb|scikit-learn| package and neural networks from the \verb|pytorch| package.
+\paragraph{}
+We started by approximating the data with some linear regression algorithms before trying some decision trees, $k$-nearest-neighbors, random forests and finally neural networks.
+\paragraph{}
+We'll talk about handling the given data, our generic method for our regression algorithms, our method to tune the hyperparameters, the obtained scores for the different tuned algorithms. We'll then go into more details concerning the neural network we used in the last part of the project and also discuss some possible improvements.

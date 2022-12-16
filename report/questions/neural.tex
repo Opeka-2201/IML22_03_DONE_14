@@ -1,0 +1,31 @@
+\section{Neural Network}
+For this project, we tried an other type of model: The neural network. For our machine learning project, we decided to use a neural network with 4 input features, a hidden layer with 10 nodes, and 1 output. The 4 inputs used in our implementation are \verb|U10,V10,U100,V100| for each zone independently (implementation in \verb|neural_network.py| file).
+\begin{figure}[H]
+  \centering
+  \includesvg[width=.5\textwidth]{figs/nn.svg}
+  \caption{Neural Network schematic}
+\end{figure}
+
+We choose linear layer for our project which is a type of layer that performs a linear operation on its input. A linear operation is an arithmetic operation that preserves the sum and difference of the inputs, meaning that the output of the operation is simply a scaled and shifted version of the input.
+\paragraph{}
+For example, suppose we have a linear layer that takes as input a vector x of size n, and applies a linear transformation to it using a weight matrix W of size n x m and a bias vector b of size m. The output of the linear layer is then given by:
+
+$$\textbf{y} = \textbf{Wx + b}$$
+
+Here, W is the weight matrix, which determines how the input is scaled and transformed. The bias vector b determines how the input is shifted. The output y is a transformed version of the input x, and has size m.
+\paragraph{}
+The neural network implemented learns using $1000$ \verb|epochs| and by passing our loss function backward into the network to update the network's weights. The loss function we have chosen for our implementation is the mean-square error (\verb|MSE|).
+\\\\
+At first, we also implemented another neural network taking 8 inputs in input (the first 4 and 4 additional input : hour, day, month and year) and 20 hidden layers (implementation in \verb|neural_network2.py| file). Here are the results obtained by the neural networks :
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+Neural Network & MSE      & MAE      \\ \hline
+\verb|nn1|            & 0.066251 & 0.185222 \\ \hline
+\verb|nn2|            & 0.100500 & 0.270464 \\ \hline
+\end{tabular}
+\caption{Results for neural networks}
+\label{tab:nn-results}
+\end{table}
